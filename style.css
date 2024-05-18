@@ -1,0 +1,164 @@
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+body {
+  color: white;
+  background-color: #1a2739;
+
+  .rps-game {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .rps-game__header {
+      text-align: center;
+
+      position: relative;
+
+      .rps-game__title {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-weight: bold;
+        text-transform: uppercase;
+        color: #0783f0;
+        font-size: 2.5rem;
+      }
+
+      .rps-game__sub-title {
+        font-size: 1rem;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+          'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      }
+    }
+
+    .rps-game__main-content {
+      display: grid;
+      grid-template-rows: 1fr 50px 1fr;
+      justify-items: center;
+
+      width: 300px;
+      height: 300px;
+      margin: 20px 0px;
+      padding: 20px;
+
+      text-align: center;
+
+      .rps-game__computer {
+        .rps-game__computer-title {
+          font-weight: 700;
+          font-family: Arial, Helvetica, sans-serif;
+          color: #ffc907;
+          text-align: center;
+        }
+        .rps-game__computer-choice-display {
+          display: flex;
+          flex-direction: column-reverse;
+          gap: 5px;
+
+          margin-top: 10px;
+
+          .rps-game__computer-choice-text {
+            font-size: 0.8rem;
+            text-transform: capitalize;
+          }
+
+          .rps-game__computer-choice-value {
+            font-size: 2rem;
+            rotate: 180deg;
+          }
+        }
+      }
+
+      .rps-game__result {
+        font-size: 1.6rem;
+        color: #0783f0;
+        text-shadow: 1px 1px 5px #00b7ff;
+
+        height: 50px;
+        width: 50px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .rps-game__player {
+        display: flex;
+        flex-direction: column-reverse;
+        .rps-game__player-title {
+          font-weight: 700;
+          font-family: Arial, Helvetica, sans-serif;
+          color: #ffedce;
+          text-align: center;
+        }
+        .rps-game__player-choice-display {
+          display: flex;
+          flex-direction: column;
+          gap: 5px;
+
+          margin-bottom: 10px;
+
+          .rps-game__player-choice-text {
+            font-size: 0.8rem;
+            text-transform: capitalize;
+          }
+
+          .rps-game__player-choice-value {
+            font-size: 2rem;
+          }
+        }
+      }
+    }
+
+    .rps-game__player-choice {
+      display: grid;
+      grid-template-columns: repeat(3, 80px);
+      gap: 20px;
+
+      .rps-game__player-choice-btn {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        outline: none;
+        border: none;
+        border-radius: 5px;
+        padding: 10px;
+
+        background-color: #1a2739;
+
+        color: white;
+
+        cursor: pointer;
+
+        transition: background 200ms;
+
+        .rps_game__player-choice-btn-icon {
+          display: inline-block;
+          background-color: #0783f0;
+          padding: 5px;
+          font-size: 1.2rem;
+          border-radius: 100%;
+          margin-bottom: 5px;
+          transition: background 200ms;
+        }
+
+        &:hover {
+          background-color: #0783f0;
+
+          .rps_game__player-choice-btn-icon {
+            background-color: #1a2739;
+          }
+        }
+      }
+    }
+  }
+}

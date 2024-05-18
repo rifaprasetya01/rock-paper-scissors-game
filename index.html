@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>RPS Game</title>
+  </head>
+  <body>
+    <div class="rps-game">
+      <header class="rps-game__header">
+        <h1 class="rps-game__title">RPS Game!</h1>
+        <h2 class="rps-game__sub-title">Rock Paper Scissors</h2>
+      </header>
+
+      <main class="rps-game__main-content">
+        <section class="rps-game__computer">
+          <h3 class="rps-game__computer-title">Computer</h3>
+          <div class="rps-game__computer-choice-display">
+            <span
+              id="computerChoiceDisplayIcon"
+              class="rps-game__computer-choice-value"
+              >✊</span
+            >
+            <span
+              id="computerChoiceDisplayText"
+              class="rps-game__computer-choice-text"
+              >?</span
+            >
+          </div>
+        </section>
+        <span id="gameResultDisplay" class="rps-game__result">VS</span>
+        <section class="rps-game__player">
+          <h3 class="rps-game__player-title">You</h3>
+          <div class="rps-game__player-choice-display">
+            <span
+              id="playerChoiceDisplayIcon"
+              class="rps-game__player-choice-value"
+              >✊🏻</span
+            >
+            <span
+              id="playerChoiceDisplayText"
+              class="rps-game__player-choice-text"
+              >?</span
+            >
+          </div>
+        </section>
+      </main>
+      <footer class="rps-game__player-choice">
+        <button
+          id="choiceRockBtn"
+          class="rps-game__player-choice-btn rps-game__player-choice-btn--rock">
+          <span class="rps_game__player-choice-btn-icon">✊🏻</span>
+          <span class="rps_game__player-choice-btn-text">Rock</span>
+        </button>
+        <button
+          id="choicePaperBtn"
+          class="rps-game__player-choice-btn rps-game__player-choice-btn--paper">
+          <span class="rps_game__player-choice-btn-icon">🖐🏻</span>
+          <span class="rps_game__player-choice-btn-text">Paper</span>
+        </button>
+        <button
+          id="choiceScissorsBtn"
+          class="rps-game__player-choice-btn rps-game__player-choice-btn--scissors">
+          <span class="rps_game__player-choice-btn-icon">✌🏻</span>
+          <span class="rps_game__player-choice-btn-text">Scissors</span>
+        </button>
+      </footer>
+    </div>
+
+    <script type="module" src="index.js"></script>
+  </body>
+</html>
