@@ -1,3 +1,4 @@
+import Computer from './classes/Computer.js';
 import RPSGame from './classes/RPSGame.js';
 
 function main() {

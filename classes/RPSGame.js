@@ -1,102 +1,56 @@
+import Computer from './Computer.js';
+import Player from './Player.js';
+
 export default class RPSGame {
   constructor() {
-    this.resultDisplayment = document.getElementById('gameResultDisplay');
-    this.computerChoiceDisplayIcon = document.getElementById(
-      'computerChoiceDisplayIcon'
-    );
-    this.computerChoiceDisplayText = document.getElementById(
-      'computerChoiceDisplayText'
-    );
-    this.playerChoiceDisplayIcon = document.getElementById(
-      'playerChoiceDisplayIcon'
-    );
-    this.playerChoiceDisplayText = document.getElementById(
-      'playerChoiceDisplayText'
-    );
+    this.resultDisplayElement = document.getElementById('gameResultDisplay');
 
-    this.allowedChoices = [
-      {
+    this.choices = {
+      rock: {
         text: 'rock',
         icon: {computer: '✊', player: '✊🏻'},
       },
-      {
+      paper: {
         text: 'paper',
         icon: {computer: '🖐️', player: '🖐🏻'},
       },
-      {
+      scissors: {
         text: 'scissors',
         icon: {computer: '✌️', player: '✌🏻'},
       },
-    ];
-
-    this.choice = {
-      computer: null,
     };
 
-    this.randomIndex = 0;
-  }
-
-  animationComputerChoose(delay) {
-    const interval = setInterval(() => {
-      const randIndex = Math.floor(Math.random() * 3);
-      this.computerChoiceDisplayIcon.textContent =
-        this.allowedChoices[randIndex].icon.computer;
-      this.computerChoiceDisplayText.textContent =
-        this.allowedChoices[randIndex].text;
-    }, 100);
-    const timeout = setTimeout(() => {
-      clearInterval(interval);
-      clearTimeout(timeout);
-    }, delay);
-  }
-
-  setComputerChoice() {
-    this.randomIndex = Math.floor(Math.random() * 3);
-    this.choice.computer = this.allowedChoices[this.randomIndex];
-    this.computerChoiceDisplayIcon.textContent =
-      this.choice.computer.icon.computer;
-    this.computerChoiceDisplayText.textContent = this.choice.computer.text;
-  }
-
-  setPlayerChoice(choice) {
-    const playerChoice = this.allowedChoices.filter(
-      (item) => item.text === choice
-    )[0];
-
-    this.playerChoiceDisplayIcon.textContent = playerChoice.icon.player;
-    this.playerChoiceDisplayText.textContent = playerChoice.text;
+    this.computerInstance = new Computer(this.choices);
+    this.playerChoice = new Player(this.choices);
   }
 
   checkResult(playerChoice, delay) {
-    this.resultDisplayment.textContent = `VS`;
-    this.setPlayerChoice(playerChoice);
-    this.animationComputerChoose(delay);
-    const timeout = setTimeout(() => {
-      this.setComputerChoice();
+    const conditionCases = {
+      'computer:rock': {
+        'player:rock': 'GAME TIE',
+        'player:paper': 'YOU WIN',
+        'player:scissors': 'YOU LOSE',
+      },
+      'computer:paper': {
+        'player:paper': 'GAME TIE',
+        'player:scissors': 'YOU WIN',
+        'player:rock': 'YOU LOSE',
+      },
+      'computer:scissors': {
+        'player:scissors': 'GAME TIE',
+        'player:rock': 'YOU WIN',
+        'player:paper': 'YOU LOSE',
+      },
+    };
 
-      if (this.choice.computer.text === playerChoice) {
-        this.resultDisplayment.textContent = `GAME TIE`;
-      } else if (this.choice.computer.text === 'rock') {
-        if (playerChoice === 'paper') {
-          this.resultDisplayment.textContent = `YOU WIN!`;
-        } else {
-          this.resultDisplayment.textContent = `YOU LOSE!`;
-        }
-      } else if (this.choice.computer.text === 'paper') {
-        if (playerChoice === 'scissors') {
-          this.resultDisplayment.textContent = `YOU WIN!`;
-        } else {
-          this.resultDisplayment.textContent = `YOU LOSE!`;
-        }
-      } else if (this.choice.computer.text === 'scissors') {
-        if (playerChoice === 'rock') {
-          this.resultDisplayment.textContent = `YOU WIN!`;
-        } else {
-          this.resultDisplayment.textContent = `YOU LOSE!`;
-        }
-      } else {
-        this.resultDisplayment.textContent = `UNDEFINED`;
-      }
+    this.resultDisplayElement.textContent = 'VS';
+    this.playerChoice.setChoice(playerChoice);
+    this.computerInstance.shufflingAnimation(delay);
+    const timeout = setTimeout(() => {
+      this.resultDisplayElement.textContent =
+        conditionCases[`computer:${this.computerInstance.choice}`][
+          `player:${playerChoice}`
+        ];
 
       clearTimeout(timeout);
     }, delay);
